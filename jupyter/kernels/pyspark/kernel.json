@@ -1,0 +1,21 @@
+{
+    "argv": [
+        "/usr/bin/docker",
+	"run",
+	"--rm",
+	"--cpuset-cpus=0-15",
+	"--ipc=host",
+	"--network=host",
+	"-v",
+	"/mnt/e/data/User/kisookim/workspace/notebooks:/workspace/notebooks",
+	"{connection_file}:/connection-spec",
+	"jupyter/pyspark-notebook:latest",
+	"python",
+	"-m",
+	"ipykernel_launcher",
+	"-f",
+	"/connection-spec"
+    ],
+    "display_name": "pyspark",
+    "language": "python"
+}

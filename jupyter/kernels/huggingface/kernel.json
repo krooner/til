@@ -1,0 +1,27 @@
+{
+    "argv": [
+        "/usr/bin/docker",
+	"run",
+	"--rm",
+	"--gpus",
+	"all",
+	"--cpuset-cpus=0-15",
+	"--ulimit",
+	"memlock=-1",
+	"--ulimit",
+	"stack=67108864",
+	"--ipc=host",
+	"--network=host",
+	"-v",
+	"/mnt/e/data/User/kisookim/workspace/notebooks:/workspace/notebooks",
+	"{connection_file}:/connection-spec",
+	"<tag_of_image_installed_huggingface>",
+	"python",
+	"-m",
+	"ipykernel_launcher",
+	"-f",
+	"/connection-spec"
+    ],
+    "display_name": "huggingface",
+    "language": "python"
+}
