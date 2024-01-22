@@ -2,8 +2,11 @@ FROM jupyter/datascience-notebook:latest
 
 USER root
 
-# install konlpy
-RUN pip3 install konlpy
+# install konlpy and other libraries for data analysis
+RUN pip3 install konlpy umap-learn hdbscan
+
+# download malgun-gothic font for hangul visualization
+RUN wget https://www.wfonts.com/download/data/2016/06/13/malgun-gothic/malgun-gothic.zip && unzip malgun-gothic.zip
 
 # install mecab-ko
 RUN wget https://bitbucket.org/eunjeon/mecab-ko/downloads/mecab-0.996-ko-0.9.2.tar.gz
@@ -27,7 +30,6 @@ make && \
 make install
 
 RUN cd ../
-# install mecab
-#RUN bash <(curl -s https://raw.githubusercontent.com/konlpy/konlpy/master/scripts/mecab.sh)
+
 # mecab-python
 RUN pip install mecab-python

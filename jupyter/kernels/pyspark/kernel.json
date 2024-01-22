@@ -3,19 +3,19 @@
         "/usr/bin/docker",
 	"run",
 	"--rm",
-	"--cpuset-cpus=0-15",
+	"--cpuset-cpus=26-51",
 	"--ipc=host",
 	"--network=host",
 	"-v",
 	"/mnt/e/data/User/kisookim/workspace/notebooks:/workspace/notebooks",
 	"{connection_file}:/connection-spec",
-	"jupyter/pyspark-notebook:latest",
+	"ds_pyspark",	
 	"python",
 	"-m",
 	"ipykernel_launcher",
 	"-f",
 	"/connection-spec"
     ],
-    "display_name": "pyspark",
+    "display_name": "docker_pyspark",
     "language": "python"
 }

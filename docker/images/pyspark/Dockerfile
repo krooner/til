@@ -70,3 +70,5 @@ fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
 WORKDIR "${HOME}"
+
+RUN pip install findspark
