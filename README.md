@@ -9,12 +9,12 @@ Today I Learned
 |2023-01-02|Tue|W1 (0-2%)|출근하였으나 상태가 좋지 않아 연차. 다시 절전모드|
 |2023-01-03|Wed|W1 (0-2%)|[한국어 형태소 분석기 Mecab 설치 Dockerfile 작성 및 환경 구성](./docker/images/mecab)|
 |2023-01-04|Thu|W1 (0-2%)|TF-IDF를 활용한 고객 행동 시퀀스 데이터 클러스터링|
-|2023-01-05|Fri|W1 (0-2%)|[세미나: 초거대언어모델 연구 동향 논문 요약](./seminar)|
+|2023-01-05|Fri|W1 (0-2%)|[세미나: 초거대언어모델 연구 동향 논문 요약](./seminar/paper)|
 |2023-01-08|Mon|W2 (2-4%)|[대용량 데이터 처리를 위한 PySpark 설치 Dockerfile 작성 및 환경 구성](./docker/images/pyspark)|
 |2023-01-09|Tue|W2 (2-4%)|-|
 |2023-01-10|Wed|W2 (2-4%)|-|
 |2023-01-11|Thu|W2 (2-4%)|PM을 위한 데이터 리터러시 복습|
-|2023-01-12|Fri|W2 (2-4%)|[세미나: Huggingface 소개 및 활용 예시 발표](./seminar)|
+|2023-01-12|Fri|W2 (2-4%)|[세미나: Huggingface 소개 및 활용 예시 발표](./seminar/tool)|
 |2023-01-15|Mon|W3 (4-6%)|Huggingface Models BERT/GPT 모델 로드|
 |2023-01-16|Tue|W3 (4-6%)|Huggingface Performance and Scalability|
 |2023-01-17|Wed|W3 (4-6%)|[Huggingface 및 양자화를 위한 bitsandbytes 설치 및 GPU 연결 Dockerfile 작성 및 환경 구성](./docker/images/pyspark)|
