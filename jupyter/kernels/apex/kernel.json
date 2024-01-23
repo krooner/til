@@ -1,0 +1,27 @@
+{
+    "argv": [
+        "/usr/bin/docker",
+	"run",
+	"--rm",
+	"--gpus",
+	"all",
+	"--cpuset-cpus=26-51",
+	"--ipc=host",
+	"--ulimit",
+	"--memlock=-1",
+	"--ulimit",
+	"stack=67108864",
+	"--network=host",
+	"-v",
+	"/mnt/e/data/User/kisookim/workspace/notebooks:/workspace/notebooks",
+	"{connection_file}:/connection-spec",
+	"nvidia-pytorch",
+	"python",
+	"-m",
+	"ipykernel_launcher",
+	"-f",
+	"/connection-spec"
+    ],
+    "display_name": "docker_apex",
+    "language": "python"
+}
