@@ -17,7 +17,7 @@ Today I Learned
 |2023-01-12|Fri|W2 (2-4%)|[세미나: Huggingface 소개 및 활용 예시 발표](./seminar/tool/huggingface-for-llm_upload.pdf)|
 |2023-01-15|Mon|W3 (4-6%)|Huggingface Models BERT/GPT 모델 로드|
 |2023-01-16|Tue|W3 (4-6%)|Huggingface Performance and Scalability|
-|2023-01-17|Wed|W3 (4-6%)|[Huggingface 및 양자화를 위한 bitsandbytes 설치 및 GPU 연결 Dockerfile 작성 및 환경 구성](./docker/images/pyspark/Dockerfile)|
+|2023-01-17|Wed|W3 (4-6%)|[Huggingface 및 양자화를 위한 bitsandbytes 설치 및 GPU 연결 Dockerfile 작성 및 환경 구성](./docker/images/huggingface/Dockerfile)|
 |2023-01-18|Thu|W3 (4-6%)|KLUE/RoBERTa-base 모델 Fine-tuning 및 임베딩 추출 후 클러스터링|
 |2023-01-19|Fri|W3 (4-6%)|GPTNeo 모델에 대한 Temperature 변수 조절로 Generation 구현 및 이번 주 작업 정리|
 |2023-01-22|Mon|W4 (6-8%)|PySpark Docker Container를 활용한 데이터 전처리 작업|
