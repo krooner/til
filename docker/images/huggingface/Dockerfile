@@ -15,9 +15,9 @@ RUN pip install umap-learn[plot] \
 && pip install hdbscan \
 && pip install ipywidgets
 
-# default: use GPU 0
+# 4 GPUs but GPU 2 is broken
 RUN export CUDA_DEVICE_ORDER=PCI_BUS_ID
-RUN export CUDA_VISIBLE_DEVICES=0
+RUN export CUDA_VISIBLE_DEVICES=0,1,3
 
 # install huggingface libraries
 RUN pip install datasets accelerate transformers nvidia-ml-py3 -q

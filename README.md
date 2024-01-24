@@ -22,7 +22,7 @@ Today I Learned
 |2023-01-19|Fri|W3 (4-6%)|GPTNeo 모델에 대한 Temperature 변수 조절로 Generation 구현 및 이번 주 작업 정리|
 |2023-01-22|Mon|W4 (6-8%)|PySpark Docker Container를 활용한 데이터 전처리 작업|
 |2023-01-23|Tue|W4 (6-8%)|[PyTorch Multi-GPU 학습 방법](https://medium.com/daangn/pytorch-multi-gpu-%ED%95%99%EC%8A%B5-%EC%A0%9C%EB%8C%80%EB%A1%9C-%ED%95%98%EA%B8%B0-27270617936b) 확인 및 [NVIDIA/apex 설치 Dockerfile 작성 및 환경 구성](./docker/images/apex/Dockerfile)|
-|2023-01-24|Wed|W4 (6-8%)||
+|2023-01-24|Wed|W4 (6-8%)|Huggingface Pretrained Model Distributed Training 구현, 학습 시간 1/8로 단축|
 |2023-01-25|Thu|W4 (6-8%)||
 |2023-01-26|Fri|W4 (6-8%)||
 
