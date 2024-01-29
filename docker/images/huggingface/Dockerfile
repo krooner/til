@@ -1,30 +1,33 @@
-FROM nvcr.io/nvidia/tensorflow:23.04-tf2-py3
+# Use NVIDIA Docker Image with pytorch
+FROM nvcr.io/nvidia/pytorch:23.12-py3
 
-# install pytorch
-RUN pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu117
+# Set environment variables (permanent) for GPU Usage
+# In this case, there are 4 GPUS but one GPU is broken. (GPU 2)
+ENV CUDA_DEVICE_ORDER PCI_BUS_ID
+ENV CUDA_VISIBLE_DEVICES 0,1,3
 
 # install pip packages for data analysis
 RUN pip install --upgrade pip
 RUN pip install umap-learn[plot] \
-&& pip install scikit-dimension \
-&& pip install statsmodels \
-&& pip install kmodes \
-&& pip install kneed \
-&& pip install feature_engine \
-&& pip install tqdm \
-&& pip install hdbscan \
-&& pip install ipywidgets
-
-# 4 GPUs but GPU 2 is broken
-RUN export CUDA_DEVICE_ORDER=PCI_BUS_ID
-RUN export CUDA_VISIBLE_DEVICES=0,1,3
+	scikit-dimension \
+	statsmodels \
+	kmodes \
+	kneed \
+	feature_engine \
+	tqdm \
+	hdbscan \
+	ipywidgets
 
 # install huggingface libraries
-RUN pip install datasets accelerate transformers nvidia-ml-py3 -q
+RUN pip install datasets \
+	accelerate \
+	transformers \
+	evaluate \ 
+	nvidia-ml-py3 
 
-# install bitsandbytes for quantization
-RUN export PATH=/usr/local/cuda-11.7/bin${PATH:+:${PATH}}
-RUN export LD_LIBRARY_PATH=/usr/local/cuda-11.7/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-RUN export CUDA_HOME=/usr/local/cuda-11.7
+# install bitsandbytes library for quantization 
+RUN git clone https://github.com/timdettmers/bitsandbytes.git
+RUN cd bitsandbytes \
+	&& CUDA_VERSION=123 make cuda12x \
+	&& python setup.py install
 
-RUN pip install bitsandbytes
