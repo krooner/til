@@ -25,5 +25,7 @@ Today I Learned
 |2023-01-24|Wed|W4 (6-8%)|Huggingface Pretrained Model Distributed Training 구현, 학습 시간 1/8로 단축|
 |2023-01-25|Thu|W4 (6-8%)|KLUE/RoBERTa-base Fine-tuning 모델 임베딩 추출|
 |2023-01-26|Fri|W4 (6-8%)|PySpark로 임베딩에 컬럼 추가하려다 메모리 이슈로, Linux Command로 파일 분할 후 ID 추가 작업 수행|
+|2023-01-25|Thu|W4 (6-8%)|사용자 데이터로부터 임베딩 추출|
+|2023-01-26|Fri|W4 (6-8%)|임베딩을 입력으로 하는 MLP 학습|
 
 
