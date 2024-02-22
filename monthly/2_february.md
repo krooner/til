@@ -18,7 +18,7 @@ Today I Learned
 |2023-02-19|Mon|W8 (14-16%)|[BERT4Rec 코드 수정 - 1](https://arxiv.org/abs/1904.06690)|
 |2023-02-20|Tue|W8 (14-16%)|BERT4Rec 코드 수정 - 2|
 |2023-02-21|Wed|W8 (14-16%)|-|
-|2023-02-22|Thu|W8 (14-16%)|[Selenium 크롤러 간단 구현](/code/crawler/README.md)|
+|2023-02-22|Thu|W8 (14-16%)|[Selenium 크롤러 간단 구현](/code/crawler/)|
 |2023-02-23|Fri|W8 (14-16%)||
 |2023-02-26|Mon|W9 (16-18%)||
 |2023-02-27|Tue|W9 (16-18%)||
