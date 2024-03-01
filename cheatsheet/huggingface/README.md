@@ -33,6 +33,23 @@
 [PyTorch multi-gpu 학습 제대로 하기](https://medium.com/daangn/pytorch-multi-gpu-%ED%95%99%EC%8A%B5-%EC%A0%9C%EB%8C%80%EB%A1%9C-%ED%95%98%EA%B8%B0-27270617936b)
 
 ## ERROR
+Error message and description
 
-`RuntimeError: "nll_loss_forward_reduce_cuda_kernel_2d_index" not implemented for 'Int'`
-- [Casting label to LongTensor](https://stackoverflow.com/questions/69742930/runtimeerror-nll-loss-forward-reduce-cuda-kernel-2d-index-not-implemented-for)
+```
+RuntimeError: "nll_loss_forward_reduce_cuda_kernel_2d_index" not implemented for 'Int'
+```
+
+[Casting label to LongTensor](https://stackoverflow.com/questions/69742930/runtimeerror-nll-loss-forward-reduce-cuda-kernel-2d-index-not-implemented-for)
+
+```
+ImportError: This example requires a source install from HuggingFace Transformers (see `https://huggingface.co/docs/transformers/installation#install-from-source`), but the version found is 4.37.1.
+Check out https://github.com/huggingface/transformers/tree/main/examples#important-note for the examples corresponding to other versions of HuggingFace Transformers.
+```
+
+`torchrun`을 활용한 Distributed Training 수행 시에 발생하는 에러 메시지. Huggingface를 설치할 때 `pip`로 설치하지 말고 `source`로 설치하자. `source`로 설치하면 __stable__ version이 아닌 up-to-date and latest __main__ version을 활용할 수 있다. 반대로 말하면 stable에서는 발생하지 않던 버그가 main에서는 발생할 수 있다. 그래서, `$ pip install git+https://github.com/huggingface/transformers`
+
+```
+NotImplementedError: Using RTX 3090 or 4000 series doesn't support faster communication broadband via P2P or IB. Please set `NCCL_P2P_DISABLE="1"` and `NCCL_IB_DISABLE="1" or use `accelerate launch` which will do this automatically.
+```
+
+RTX 3090 4대가 연결되어 있는 워크스테이션에서 Distributed Training을 수행하려고 할 때 발생하는 에러 메시지. `$ NCCL_P2P_DISABLE="1" && NCCL_IB_DISABLE="1"` 또는 실행할 .py 파일 내에서 `import os; os.environ["NCCL_P2P_DISABLE"]="1"; os.environ["NCCL_IB_DISABLE"]="1"` 적용을 해도 동일 오류가 발생함.
