@@ -60,5 +60,5 @@ input_text = "틔운 미니의 제품코드는 L023E1"
 ```
 
 ## ETC
--`r'\d+'`: One or more digits
+- `r'\d+'`: One or more digits
 - `r'\w+'`: One or more alphanumeric chars
