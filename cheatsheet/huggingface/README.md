@@ -53,3 +53,12 @@ NotImplementedError: Using RTX 3090 or 4000 series doesn't support faster commun
 ```
 
 RTX 3090 4대가 연결되어 있는 워크스테이션에서 Distributed Training을 수행하려고 할 때 발생하는 에러 메시지. `$ NCCL_P2P_DISABLE="1" && NCCL_IB_DISABLE="1"` 또는 실행할 .py 파일 내에서 `import os; os.environ["NCCL_P2P_DISABLE"]="1"; os.environ["NCCL_IB_DISABLE"]="1"` 적용을 해도 동일 오류가 발생함.
+
+```
+/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py:138: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 2: out of memory (Triggered internally at /opt/pytorch/pytorch/c10/cuda/CUDAFunctions.cpp:108.)
+  return torch._C._cuda_getDeviceCount() > 0
+cpu
+```
+
+GPU 4장이 연결되어 있을 때 문제가 있는 특정 GPU를 포함하고 다음 코드를 실행했을 때 발생하는 에러 메시지. `import torch; device = "cuda" if torch.cuda.is_available() else "cpu"; print(device); print(torch.cuda.current_device()`. GPU 2번을 제외하여 `CUDA_VISIBLE_DEVICES=0,1,3` 를 환경변수로 설정한 이후에는 해당 에러가 발생하지 않음.
+
