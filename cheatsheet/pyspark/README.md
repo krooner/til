@@ -1,8 +1,14 @@
 # PySpark Cheatsheet
 
 ## Basics
-
 `dataframe = spark.read.option('header', True).csv('test_data.csv')`
+- Header 추가해서 불러오기
+
+```python
+from pyspark.sql.types import IntegerType
+dataframe = dataframe.withColumn("ordr_dt_hhmmss", dataframe[ordr_dt_hhmmss"].cast(IntegerType()))
+```
+- Column Type Casting: String to Integer
 
 ## 컬럼마다 Null/NaN 값이 얼마나 있는지 세기
 [stackoverflow: How to find count of Null and Nan values for each column in a PySpark dataframe efficiently?](https://stackoverflow.com/a/44631639)
