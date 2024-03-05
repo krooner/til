@@ -59,6 +59,20 @@ input_text = "틔운 미니의 제품코드는 L023E1"
 [obj.span() for obj in re.finditer(r'[a-zA-Z]', input_text)] # [(13, 14), (17, 18)]
 ```
 
+[알파벳과 숫자가 혼합되어 있는 단어 찾기]()
+
+```python
+import re
+test_line = 'LG 엘지 정품 RT822LBCRS 냉장고 냉장실 트레이 바구니 통 틀 rf29502 -> CUCKOO 내솥 CRPHSXT0610FB -> 330SKBL 5B20R07657 레노버 ideapad 노트북 마더 보드 81F4 -> LG 싸이킹진공청소기호환모터보호필터세트 VC3001FHA VC3002FHA -> LG 정품 광파오븐레인지 전용 석쇠 MA921NHS MA921NMS MA922NES -> LG전자 50인치 PDP TV 50PA4500 호환형 장식장용 스탠드 26L\n'
+
+words = []
+for word in test_line.split():
+    res = re.fineall(r'(?:\d+[a-zA-Z]+|[a-zA-Z]+\d+)', word)
+    if len(res) == 0: words.append(word)
+
+" ".join(words) # 'LG 엘지 정품 냉장고 냉장실 트레이 바구니 통 틀 -> CUCKOO 내솥 -> 레노버 ideapad 노트북 마더 보드 -> LG 싸이킹진공청소기호환모터보호필터세트 -> LG 정품 광파오븐레인지 전용 석쇠 -> LG전자 50인치 PDP TV 호환형 장식장용 스탠드'
+```
+
 ## ETC
 - `r'\d+'`: One or more digits
 - `r'\w+'`: One or more alphanumeric chars
