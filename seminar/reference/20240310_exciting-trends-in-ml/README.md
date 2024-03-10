@@ -7,7 +7,7 @@
 ## Observations
 - 지난 수년 간, ML은 컴퓨터로 할 수 있는 것에 대한 기대를 완전히 바꾸어놓음
 - 규모 (연산, 데이터, 모델 사이즈) 의 증가는 더 나은 결과를 가져옴
-- 필요한 Computation (연산) 과, 이를 수행하는 HW는 엄청나게 변화함
+- 필요한 Computation (연산) 과 이를 수행하는 HW는 엄청나게 변화함
 
 ## 컴퓨터로 할 수 있는 것이 엄청나게 발전함
 - Image Classification (Top-1 Accuracy)
@@ -15,7 +15,7 @@
 - Speech Recognition (Word Error Rate, WER)
   - Jan'16 (DeepSpeech2 - 13.25%) ➡️ Jul'21 (Conformer + Wav2Vec 2.0 + ... - 2.5%)
  
-더 많은 연산량 (Computational power) 은 모델의 성능을 대폭 향상시킨다. 딥러닝은 우리가 컴퓨터를 설계하는 방식을 변화시켰다. ML에 최적화된 HW는 효율적이며 세대를 거듭할수록 주된 변화를 만들어왔고, 낮은 비용 (에너지 포함) 으로 거대 모델을 활용하는 것을 가능하게 했다. 딥러닝 모델 학습/추론에 필요한 특수 연산 (Reduced precision and Specific operation) 을 수행하는 Google의 TPU chips and pods를 소개.
+더 많은 연산량 (Computational power) 은 모델의 성능을 대폭 향상시킨다. 딥러닝은 우리가 컴퓨터를 설계하는 방식을 변화시켰다. ML에 최적화된 HW는 효율적이며 세대를 거듭할수록 주된 변화를 만들어왔고, 낮은 비용 (에너지 포함) 으로 거대 모델을 활용하는 것을 가능하게 했다. 딥러닝 모델 학습/추론에 필요한 특수 연산 (Reduced precision and Specific operation) 을 수행하는 Google의 TPU chips and pods를 소개한다.
 
 ## 지난 15년 간 언어모델의 발전
 * Large-scale N-gram models (07')
@@ -40,9 +40,11 @@
   - `Towards a Human-like Open-Domain Chatbot, Arxiv 2020`
   - **대화 형식의 데이터를 대규모로 학습하여 좋은 성능을 보임.**
 
-신경망 기반 언어모델의 발전: Seq2seq (14'), Transformer (17'), GPT-2 (19': 1.5B), T5 (20': 11B), GPT-3 (20': 175B), Gopher (21': 280B), PaLM (22': 540B), Chinchilla (22': 70B), PaLM-2, GPT-4, Gemini (23')
+> 신경망 기반 언어모델의 발전
+>> Seq2seq (14'), Transformer (17'), GPT-2 (19': 1.5B), T5 (20': 11B), GPT-3 (20': 175B), Gopher (21': 280B), PaLM (22': 540B), Chinchilla (22': 70B), PaLM-2, GPT-4, Gemini (23')
 
-신경망 기반 챗봇: A Neural Conversational Model (15'), Meena (20'), ChatGPT (22'), Bard (23')
+> 신경망 기반 챗봇
+>> A Neural Conversational Model (15'), Meena (20'), ChatGPT (22'), Bard (23')
 
 ## Gemini
 `Gemini: A Family of Highly Capable Multimodel Models, Arxiv 2023`
