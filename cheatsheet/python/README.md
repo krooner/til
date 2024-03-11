@@ -67,7 +67,7 @@ test_line = 'LG 엘지 정품 RT822LBCRS 냉장고 냉장실 트레이 바구니
 
 words = []
 for word in test_line.split():
-    res = re.fineall(r'(?:\d+[a-zA-Z]+|[a-zA-Z]+\d+)', word)
+    res = re.findall(r'(?:\d+[a-zA-Z]+|[a-zA-Z]+\d+)', word)
     if len(res) == 0: words.append(word)
 
 " ".join(words) # 'LG 엘지 정품 냉장고 냉장실 트레이 바구니 통 틀 -> CUCKOO 내솥 -> 레노버 ideapad 노트북 마더 보드 -> LG 싸이킹진공청소기호환모터보호필터세트 -> LG 정품 광파오븐레인지 전용 석쇠 -> LG전자 50인치 PDP TV 호환형 장식장용 스탠드'
