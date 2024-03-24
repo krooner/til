@@ -38,7 +38,7 @@
 - Command
 
 ```bash
-$ torchrun --nproc_per_node 3 run_mlm.py --model_name_or_path /workspace/data/kso_data/LGE-CDP/upstream/models/klue_roberta-base-delimiter --tokenizer_name /workspace/data/kso_data/LGE-CDP/upstream/tokenizers/klue_roberta-base-delimiter --train_file /workspace/data/kso_data/LGE-CDP/preprocessed/finetune_data.txt --per_device_train_batch_size 64 --do_train --output_dir /workspace/data/kso_data/LGE-CDP/models/test-dist-mlm --ddp_timeout 7200 --dataloader_num_workers 3 --dataloader_prefetch_factor 2 --overwrite_output_dir --gradient_checkpointing --gradient_accumulation_steps 2 --line_by_line --optim adamw_hf --num_train_epochs 1
+torchrun --nproc_per_node 3 run_mlm.py --model_name_or_path <MODEL_NAME_PATH> --tokenizer_name <TOKENIZER_NAME_PATH> --train_file <LINE_BY_LINE_SEQ_TEXT> --per_device_train_batch_size 64 --do_train --output_dir <MODEL_OUTPUT_PATH> --ddp_timeout 7200 --dataloader_num_workers 3 --dataloader_prefetch_factor 2 --overwrite_output_dir --gradient_checkpointing --gradient_accumulation_steps 2 --line_by_line --optim adamw_hf --num_train_epochs 1
 ```
 
 ## [SOLVED] ERROR
