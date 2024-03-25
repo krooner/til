@@ -20,4 +20,4 @@
 |[부분수열의 합_](https://www.acmicpc.net/problem/14225)|[SOLVED](./bruteforce/14225/answer.py)|
 |[연산자 끼워넣기](https://www.acmicpc.net/problem/14888)|[SOLVED (중복)](./bruteforce/14888/answer.py)|
 |[연산자 끼워넣기 (2)](https://www.acmicpc.net/problem/15658)|[SOLVED](./bruteforce/15658/answer.py)|
-|[테트로미노](https://www.acmicpc.net/problem/14500)|[ING](./bruteforce/14500/answer.py)|
+|[테트로미노](https://www.acmicpc.net/problem/14500)|[...](./bruteforce/14500/answer.py)|
