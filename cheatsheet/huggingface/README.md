@@ -126,3 +126,8 @@ cpu
 ```
 - GPU 4장이 연결되어 있을 때 문제가 있는 특정 GPU를 포함하고 다음 코드를 실행했을 때 발생했던 에러 메시지. `import torch; device = "cuda" if torch.cuda.is_available() else "cpu"; print(device); print(torch.cuda.current_device()`. GPU 2번을 제외하여 `CUDA_VISIBLE_DEVICES=0,1,3` 를 환경변수로 설정한 이후에는 문제 해결. GPU 2번에 하드웨어적 문제가 있는 것 같음.
 
+```
+[Rank 6] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=880, OpType=ALLREDUCE, NumelIn=1, NumelOut=1, Timeout(ms)=7200000) ran for 7200595 milliseconds before timing out.
+```
+
+- 분산 학습을 설정한 상태 [(torchrun으로 Distributed Data Parallel로 학습)](https://velog.io/@codingchild/Huggingface-Transformers-Timeout-Issue-%ED%95%B4%EA%B2%B0)에서 많은 데이터 (약 12M에 달하는 사용자 시퀀스) 를 전처리 (Tokenize) 할 때 timeout으로 인한 에러 발생. [`--ddp_timeout`](https://github.com/huggingface/transformers/issues/17106#issuecomment-1313135141) argument의 default 값은 1800. 값을 증가시켜서 문제를 해결할 수 있음.
