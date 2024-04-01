@@ -28,6 +28,37 @@
 ## Model
 - [PyTorch 모델 저장 및 로드](https://pytorch.org/tutorials/recipes/recipes/saving_and_loading_models_for_inference.html)
 
+## Tokenizer
+
+### [BOS, EOS 토큰을 추가하고 싶은 경우](https://discuss.huggingface.co/t/gpt2tokenizer-not-putting-bos-eos-token/27394/2)
+
+Tokenizer가 '안녕하세요'를 Tokenize할 때
+- AS-IS: `_안녕, 하, 세, 요`
+- TO-BE: `[BOS], _안녕, 하, 세, 요, [EOS]`
+
+```python
+from transformers import GPT2TokenizerFast
+from tokenizers.processors import TemplateProcessing
+
+tokenizer = GPT2TokenizerFast.from_pretrained('skt/kogpt2-base-v2')
+
+# tokenizer.post_processor = TemplateProcessing(...) <- IT WONT WORK!
+tokenizer._tokenizer.post_processor = TemplateProcessing(
+  single="<s> $0 <\s>",
+  special_tokens=[("<s>", tokenizer.bos_token_id), ("</s>", tokenizer.eos_token_id)]
+)
+
+# max_length 초과 시 왼쪽 (Old in time-ascending order) 부터 제거
+tokenizer.truncation_side = 'left'
+
+prompt = '안녕하세요'
+prompt_tokenized = tokenizer(prompt, padding='max_length', truncation=True, max_length=model.config.n_positions)
+tokenizer.convert_ids_to_tokens(prompt_tokenized['input_ids'])
+# <s>, _안녕, 하, 세, 요, </s>
+```
+
+`post_processor` 함수는 `tokenizers` 라이브러리에 있는 tokenizer에만 존재하고 `transformers` 라이브러리에 있는 tokenizer에는 적용되지 않는다. transformers 라이브러리의 `tokenizer._tokenizer` Object는 tokenizers 라이브러리의 tokenizer이므로 해당 Object를 변경하면 된다.
+
 
 ## Distributed Training
 [PyTorch multi-gpu 학습 제대로 하기](https://medium.com/daangn/pytorch-multi-gpu-%ED%95%99%EC%8A%B5-%EC%A0%9C%EB%8C%80%EB%A1%9C-%ED%95%98%EA%B8%B0-27270617936b)
