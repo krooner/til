@@ -28,7 +28,24 @@
 ## Model
 - [PyTorch 모델 저장 및 로드](https://pytorch.org/tutorials/recipes/recipes/saving_and_loading_models_for_inference.html)
 
+
+
 ## Tokenizer
+
+### Tokenizer에 [새로운 토큰 추가](https://huggingface.co/docs/transformers/en/internal/tokenization_utils#transformers.SpecialTokensMixin.add_tokens) 및 [Model에 반영하기](https://huggingface.co/docs/transformers/en/main_classes/model#transformers.PreTrainedModel.resize_token_embeddings)
+`밥 -> 반찬`이라는 텍스트를 Tokenizer할 경우
+- AS-IS: `밥, <UNK>, 반찬`
+- TO-BE: `밥, ->, 반찬`
+
+```python
+num_added_tokens = tokenizer.add_tokens(["->"])
+model.resize_token_embeddings(len(tokenizer))
+# Embedding(51201, 768)
+```
+
+1. 사용할 tokenizer의 vocab에 새로운 token을 추가한다.
+2. Update된 tokenizer의 vocab_size에 맞게끔 model의 token_embedding_size를 업데이트 한다.
+
 
 ### [BOS, EOS 토큰을 추가하고 싶은 경우](https://discuss.huggingface.co/t/gpt2tokenizer-not-putting-bos-eos-token/27394/2)
 
