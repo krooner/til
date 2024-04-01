@@ -38,7 +38,9 @@ login(token=access_token)
 ## Model
 - [PyTorch 모델 저장 및 로드](https://pytorch.org/tutorials/recipes/recipes/saving_and_loading_models_for_inference.html)
 
+### Checkpoint 저장 주기 설정 [`--save_steps`](https://discuss.huggingface.co/t/saving-model-per-some-step-when-using-trainer/11553/2)
 
+BERT/GPT 모델 학습 시 Trainer 함수는 기본적으로 500 Step마다 Checkpoint를 생성하는데, 전체 data 수 대비 batch-size가 작아서 Gradient update가 잦은 경우 매우 빈번하게 모델을 중간 저장하므로 해당 Argument에 적당한 값을 부여해서 저장 주기를 조절할 수 있다.
 
 ## Tokenizer
 
