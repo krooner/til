@@ -1,5 +1,15 @@
 # Huggingface Cheatsheet
 
+## Gated Model/Tokenizer 호출을 위한 Huggingface Hub Login
+```python
+access_token = "<your_token_generated>"
+
+from huggingface_hub import login
+login(token=access_token)
+```
+
+`kakaobrain/kogpt` 모델을 호출하려 했으나 `gated model`로 설정되어 있어 Huggingface에서 발급하는 token이 필요하다. VSCODE에서 jupyter notebook을 실행하는 경우, Cell에서 `!huggingface-cli login`을 했을 때 Token을 입력할 수 없는 문제가 발생했다. 대신에 `huggingface_hub` 라이브러리를 활용해서 로그인을 수행했다.
+
 ## Tensor
 ### [`torch.Tensor.{detach(), cpu(), numpy()}`](https://iambeginnerdeveloper.tistory.com/211)
 
@@ -57,16 +67,16 @@ Tokenizer가 '안녕하세요'를 Tokenize할 때
 from transformers import GPT2TokenizerFast
 from tokenizers.processors import TemplateProcessing
 
-tokenizer = GPT2TokenizerFast.from_pretrained('skt/kogpt2-base-v2')
+tokenizer = GPT2TokenizerFast.from_pretrained(
+  'skt/kogpt2-base-v2',
+  truncation_side='left' # max_length 초과 시 왼쪽 (Old in time-ascending order) 부터 제거
+)
 
 # tokenizer.post_processor = TemplateProcessing(...) <- IT WONT WORK!
 tokenizer._tokenizer.post_processor = TemplateProcessing(
   single="<s> $0 <\s>",
   special_tokens=[("<s>", tokenizer.bos_token_id), ("</s>", tokenizer.eos_token_id)]
 )
-
-# max_length 초과 시 왼쪽 (Old in time-ascending order) 부터 제거
-tokenizer.truncation_side = 'left'
 
 prompt = '안녕하세요'
 prompt_tokenized = tokenizer(prompt, padding='max_length', truncation=True, max_length=model.config.n_positions)
@@ -82,7 +92,7 @@ tokenizer.convert_ids_to_tokens(prompt_tokenized['input_ids'])
 - GPU 4장이 달린 워크스테이션을 가지고 BERT 모델을 Multi-GPU로 학습하는 내용 설명. 본인 작업과 매우 유사하여 참고함. Multi-GPU 활용 방법을 단계적으로 잘 설명함.
 
 [Huggingface를 활용하여 Distributed Training 수행하기](https://github.com/huggingface/transformers/tree/main/examples/pytorch#distributed-training-and-mixed-precision)
-- GPU ~~4~~ 3장 (1장 고장) 으로 `torch.nn.Parallel()`을 활용하여 BERT 모델을 Finetuning (1 Epoch) 함에도 약 80시간이 소요. 학습 시간을 대폭 줄이고자 직접 Multi-GPU를 활용한 Distributed Training 방법으로 수행하기 위해 참고한 문서
+- GPU ~~4~~ 3장 (1장 broken) 으로 `torch.nn.Parallel()`을 활용하여 BERT 모델을 Finetuning (1 Epoch) 함에도 약 80시간이 소요. 학습 시간을 대폭 줄이고자 직접 Multi-GPU를 활용한 Distributed Training 방법으로 수행하기 위해 참고한 문서
 - Command
 
 ```bash
