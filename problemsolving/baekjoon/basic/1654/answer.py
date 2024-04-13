@@ -1,43 +1,22 @@
-from collections import deque
+K, N = map(int, input().split())
+lines = [int(input()) for _ in range(K)]
+answer = 0
 
-while True:
-    line = input()
-    if line == '.':
-        break
+minl = 1
+maxl = max(lines)
 
-    pts = deque([])
+while minl <= maxl:
+    mid = int((minl+maxl)/2)
 
-    flag = True
-    for char in line:
-        if char == '(':
-            pts.append(char)
-        elif char == ')':
-            if len(pts) == 0:
-                flag = False
-                break
-            else:
-                if pts[-1] != '(':
-                    flag = False
-                    break
-                else:
-                    pts.pop()
-        elif char == '[':
-            pts.append(char)
-        elif char == ']':
-            if len(pts) == 0:
-                flag = False
-                break
-            else:
-                if pts[-1] != '[':
-                    flag = False
-                    break
-                else:
-                    pts.pop()
-
-    if len(pts) != 0:
-        flag = False
+    cnt = 0
+    for line in lines:
+        cnt += line//mid
     
-    if flag:
-        print('yes')
+    if cnt >= N:
+        if answer < mid:
+            answer = mid
+        minl = mid+1
     else:
-        print('no')
+        maxl = mid-1
+
+print(answer)
