@@ -98,7 +98,7 @@ tokenizer.convert_ids_to_tokens(prompt_tokenized['input_ids'])
 - Command
 
 ```bash
-torchrun --nproc_per_node 3 run_mlm.py --model_name_or_path <MODEL_NAME_PATH> --tokenizer_name <TOKENIZER_NAME_PATH> --train_file <LINE_BY_LINE_SEQ_TEXT> --per_device_train_batch_size 64 --do_train --output_dir <MODEL_OUTPUT_PATH> --ddp_timeout 7200 --dataloader_num_workers 3 --dataloader_prefetch_factor 2 --overwrite_output_dir --gradient_checkpointing --gradient_accumulation_steps 2 --line_by_line --optim adamw_hf --num_train_epochs 1
+torchrun --nproc_per_node 3 run_mlm.py --model_name_or_path <MODEL_NAME_PATH> --tokenizer_name <TOKENIZER_NAME_PATH> --train_file <LINE_BY_LINE_SEQ_TEXT> --per_device_train_batch_size 64 --do_train --output_dir <MODEL_OUTPUT_PATH> --ddp_timeout 7200 --dataloader_num_workers 3 --dataloader_prefetch_factor 2 --overwrite_output_dir --gradient_checkpointing --gradient_accumulation_steps 2 --line_by_line --optim adamw_hf --num_train_epochs 1 --save_steps 5000
 ```
 
 ## [SOLVED] ERROR
