@@ -45,9 +45,9 @@ cuda
 import re
 
 input_text = "LG 스타일러 30% 할인 중!!!!! (사은품 증정)"
-re.sub(r'[^a-zA-Z0-9가-힣 ]+', r'', input_text)
+text_replaced = re.sub(r'[^a-zA-Z0-9가-힣 ]+', r'', input_text)
 
-input_text # 'LG 스타일러 30 할인 중 사은품 증정'
+test_replaced # 'LG 스타일러 30 할인 중 사은품 증정'
 ```
 
 [텍스트 내 연속된 알파벳 Substring Index 찾기]()
