@@ -142,3 +142,20 @@ cpu
 ```
 
 - 분산 학습을 설정한 상태 [(torchrun으로 Distributed Data Parallel로 학습)](https://velog.io/@codingchild/Huggingface-Transformers-Timeout-Issue-%ED%95%B4%EA%B2%B0)에서 많은 데이터 (약 12M에 달하는 사용자 시퀀스) 를 전처리 (Tokenize) 할 때 timeout으로 인한 에러 발생. [`--ddp_timeout`](https://github.com/huggingface/transformers/issues/17106#issuecomment-1313135141) argument의 default 값은 1800. 값을 증가시켜서 문제를 해결할 수 있음.
+
+```bash
+$ python run_clm.py ...
+...
+RuntimeError: [1] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Socket Timeout
+...
+```
+
+```python
+# run_clm.py
+
+import torch
+import datetime
+torch.distributed.init_process_group(backend='nccl', timeout=datetime.timedelta(seconds=3600*24))
+```
+
+- GPT2 모델을 Finetuning 하기 전 약 12M의 시퀀스를 전처리하는 과정에서 위와 같은 Error가 발생. GPU 3개로 DistributedDataParallel (DDP) 학습을 진행하는 과정에서 해당 오류가 발생. Inter-GPU Communication 과정에서 Timeout threshold를 초과하여 해당 오류가 발생한 것으로 보임. [분산 프로세스를 초기화할 때 timeout 값을 크게 설정](https://github.com/huggingface/accelerate/issues/223#issuecomment-1008792609)하여 적용한 결과 해결됨.
