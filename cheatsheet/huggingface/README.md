@@ -44,6 +44,17 @@ BERT/GPT 모델 학습 시 Trainer 함수는 기본적으로 500 Step마다 Chec
 
 ## Tokenizer
 
+### `truncation_side` 설정
+Tokenize하는 과정에서 Model의 max_length를 초과하는 경우 기본적으로 Tokenizer는 뒤 (Right, tail, newer) 에 있는 토큰을 제거하여 길이를 맞춘다: `truncation_side='right'` 그러나 필요에 따라 시간순으로 정렬된 시퀀스에서, 길이가 초과되는 경우 최근 데이터를 우선시하고 앞 (Left, head, older) 에 있는 토큰을 제거하고 싶을 수 있다. 그런 경우에는 Tokenizer를 Instantiate한 다음 `truncation_side='left'`로 설정한다.
+
+__주의: `truncation_side`를 right에서 left로 변경한 뒤 Tokenizer를 저장했으나, Tokenizer 호출 시 `truncation_side`가 업데이트 되지 않는다. Instantiate한 다음 truncation_side를 설정해주어야 한다.__
+
+```python
+from transformers import GPT2Tokenizer
+
+tokenizer = GPT2Tokenizer.from_pretrained("skt/kogpt2-base-v2", truncation_side='left')
+```
+
 ### Tokenizer에 [새로운 토큰 추가](https://huggingface.co/docs/transformers/en/internal/tokenization_utils#transformers.SpecialTokensMixin.add_tokens) 및 [Model에 반영하기](https://huggingface.co/docs/transformers/en/main_classes/model#transformers.PreTrainedModel.resize_token_embeddings)
 `밥 -> 반찬`이라는 텍스트를 Tokenizer할 경우
 - AS-IS: `밥, <UNK>, 반찬`
