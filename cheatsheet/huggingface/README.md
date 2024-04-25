@@ -105,11 +105,17 @@ tokenizer.convert_ids_to_tokens(prompt_tokenized['input_ids'])
 - GPU 4장이 달린 워크스테이션을 가지고 BERT 모델을 Multi-GPU로 학습하는 내용 설명. 본인 작업과 매우 유사하여 참고함. Multi-GPU 활용 방법을 단계적으로 잘 설명함.
 
 [Huggingface를 활용하여 Distributed Training 수행하기](https://github.com/huggingface/transformers/tree/main/examples/pytorch#distributed-training-and-mixed-precision)
-- GPU ~~4~~ 3장 (1장 broken) 으로 `torch.nn.Parallel()`을 활용하여 BERT 모델을 Finetuning (1 Epoch) 함에도 약 80시간이 소요. 학습 시간을 대폭 줄이고자 직접 Multi-GPU를 활용한 Distributed Training 방법으로 수행하기 위해 참고한 문서
+- GPU ~~4~~ 3장 (1장 broken) 으로 `torch.nn.Parallel()`을 활용하여 BERT 모델 MLM Finetuning (1 Epoch) 함에도 약 80시간이 소요. 학습 시간을 대폭 줄이고자 직접 Multi-GPU를 활용한 Distributed Training 방법으로 수행하기 위해 참고한 문서
 - Command
 
 ```bash
 torchrun --nproc_per_node 3 run_mlm.py --model_name_or_path <MODEL_NAME_PATH> --tokenizer_name <TOKENIZER_NAME_PATH> --train_file <LINE_BY_LINE_SEQ_TEXT> --per_device_train_batch_size 64 --do_train --output_dir <MODEL_OUTPUT_PATH> --ddp_timeout 7200 --dataloader_num_workers 3 --dataloader_prefetch_factor 2 --overwrite_output_dir --gradient_checkpointing --gradient_accumulation_steps 2 --line_by_line --optim adamw_hf --num_train_epochs 1 --save_steps 5000
+```
+
+- 동일 환경에서 CLM Finetuning 시
+
+```bash
+torchrun --nproc_per_node 3 run_clm.py --model_name_or_path <MODEL_NAME_PATH> --tokenizer_name <TOKENIZER_NAME_PATH> --train_file <LINE_BY_LINE_SEQ_TEXT> --per_device_train_batch_size 64 --do_train --do_eval --output_dir <MODEL_OUTPUT_PATH> --ddp_timeout 7200 --dataloader_num_workers 3 --dataloader_prefetch_factor 2 --overwrite_output_dir --gradient_checkpointing --gradient_accumulation_steps 2 --optim adamw_hf --num_train_epochs 1 --keep_linebreaks --block_size <MODEL_MAX_LENGTH> --fp16
 ```
 
 ## [SOLVED] ERROR
