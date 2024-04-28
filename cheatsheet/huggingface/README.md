@@ -113,13 +113,8 @@ torchrun --nproc_per_node 3 run_mlm.py --model_name_or_path <MODEL_NAME_PATH> --
 ```
 
 [GPT](https://github.com/huggingface/transformers/tree/main/examples/pytorch#distributed-training-and-mixed-precision)
-- GPT2
+- 동일 환경에서 GPT2 CLM Finetuning 시
 - Command
-```bash
-torchrun --nproc_per_node 3 run_clm.py --model_name_or_path /workspace/data/kso_data/LGE-CDP/models/pretrained/kogpt2-base-v2-delimiter/ --tokenizer_name /workspace/data/kso_data/LGE-CDP/models/pretrained/kogpt2-base-v2-delimiter/ --train_file /workspace/data/kso_data/LGE-CDP/fetch_customer_20240415/finetune_sequence.txt --per_device_train_batch_size 32 --do_train --do_eval --output_dir /workspace/data/kso_data/LGE-CDP/fetch_customer_20240415/kogpt2-base-v2-finetune-EP1/ --ddp_timeout 7200 --dataloader_num_workers 3 --dataloader_prefetch_factor 2 --overwrite_output_dir --gradient_checkpointing --gradient_accumulation_steps 2 --optim adafactor --num_train_epochs 1 --keep_linebreaks --block_size 1024 --fp16 --save_steps 10000
-```
-
-- 동일 환경에서 CLM Finetuning 시
 
 ```bash
 torchrun --nproc_per_node 3 run_clm.py --model_name_or_path <MODEL_NAME_PATH> --tokenizer_name <TOKENIZER_NAME_PATH> --train_file <LINE_BY_LINE_SEQ_TEXT> --per_device_train_batch_size 64 --do_train --do_eval --output_dir <MODEL_OUTPUT_PATH> --ddp_timeout 7200 --dataloader_num_workers 3 --dataloader_prefetch_factor 2 --overwrite_output_dir --gradient_checkpointing --gradient_accumulation_steps 2 --optim adamw_hf --num_train_epochs 1 --keep_linebreaks --block_size <MODEL_MAX_LENGTH> --fp16
