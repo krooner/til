@@ -38,10 +38,6 @@ login(token=access_token)
 ## Model
 - [PyTorch 모델 저장 및 로드](https://pytorch.org/tutorials/recipes/recipes/saving_and_loading_models_for_inference.html)
 
-### Checkpoint 저장 주기 설정 [`--save_steps`](https://discuss.huggingface.co/t/saving-model-per-some-step-when-using-trainer/11553/2)
-
-BERT/GPT 모델 학습 시 Trainer 함수는 기본적으로 500 Step마다 Checkpoint를 생성하는데, 전체 data 수 대비 batch-size가 작아서 Gradient update가 잦은 경우 매우 빈번하게 모델을 중간 저장하므로 해당 Argument에 적당한 값을 부여해서 저장 주기를 조절할 수 있다.
-
 ## Tokenizer
 
 ### `truncation_side` 설정
@@ -100,7 +96,13 @@ tokenizer.convert_ids_to_tokens(prompt_tokenized['input_ids'])
 `post_processor` 함수는 `tokenizers` 라이브러리에 있는 tokenizer에만 존재하고 `transformers` 라이브러리에 있는 tokenizer에는 적용되지 않는다. transformers 라이브러리의 `tokenizer._tokenizer` Object는 tokenizers 라이브러리의 tokenizer이므로 해당 Object를 변경하면 된다.
 
 
-## Distributed Training
+## Training
+
+### Checkpoint 저장 주기 설정 [`--save_steps`](https://discuss.huggingface.co/t/saving-model-per-some-step-when-using-trainer/11553/2)
+
+BERT/GPT 모델 학습 시 Trainer 함수는 기본적으로 500 Step마다 Checkpoint를 생성하는데, 전체 data 수 대비 batch-size가 작아서 Gradient update가 잦은 경우 매우 빈번하게 모델을 중간 저장하므로 해당 Argument에 적당한 값을 부여해서 저장 주기를 조절할 수 있다.
+
+### Distributed Training
 [PyTorch multi-gpu 학습 제대로 하기](https://medium.com/daangn/pytorch-multi-gpu-%ED%95%99%EC%8A%B5-%EC%A0%9C%EB%8C%80%EB%A1%9C-%ED%95%98%EA%B8%B0-27270617936b)
 - GPU 4장이 달린 워크스테이션을 가지고 BERT 모델을 Multi-GPU로 학습하는 내용 설명. 본인 작업과 매우 유사하여 참고함. Multi-GPU 활용 방법을 단계적으로 잘 설명함.
 
@@ -117,8 +119,12 @@ torchrun --nproc_per_node 3 run_mlm.py --model_name_or_path <MODEL_NAME_PATH> --
 - Command
 
 ```bash
-torchrun --nproc_per_node 3 run_clm.py --model_name_or_path <MODEL_NAME_PATH> --tokenizer_name <TOKENIZER_NAME_PATH> --train_file <LINE_BY_LINE_SEQ_TEXT> --per_device_train_batch_size 64 --do_train --do_eval --output_dir <MODEL_OUTPUT_PATH> --ddp_timeout 7200 --dataloader_num_workers 3 --dataloader_prefetch_factor 2 --overwrite_output_dir --gradient_checkpointing --gradient_accumulation_steps 2 --optim adamw_hf --num_train_epochs 1 --keep_linebreaks --block_size <MODEL_MAX_LENGTH> --fp16
+torchrun --nproc_per_node 3 run_clm.py --model_name_or_path <MODEL_NAME_PATH> --tokenizer_name <TOKENIZER_NAME_PATH> --train_file <LINE_BY_LINE_SEQ_TEXT> --per_device_train_batch_size 64 --do_train --do_eval --output_dir <MODEL_OUTPUT_PATH> --ddp_timeout 7200 --dataloader_num_workers 3 --dataloader_prefetch_factor 2 --overwrite_output_dir --gradient_checkpointing --gradient_accumulation_steps 2 --optim adamw_hf --num_train_epochs 1 --block_size <MODEL_MAX_LENGTH> --fp16
 ```
+
+## Inference 
+
+### AMP (Automatic Mixed Precision) 
 
 ## [SOLVED] ERROR
 
