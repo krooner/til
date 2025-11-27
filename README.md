@@ -8,3 +8,5 @@ __2024__
 - [February](./monthly/2_february.md)
 - [March](./monthly/3_march.md)
 - [April](./monthly/4_april.md)
+
+__2025__
